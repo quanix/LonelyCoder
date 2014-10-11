@@ -1,4 +1,4 @@
-package org.lonelycoder.server.web.controller;
+package org.lonelycoder.server.index.web.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
