@@ -39,7 +39,7 @@
 
     <!-- 构建服务插件 -->
     <build>
-        <finalName>server</finalName>
+        <finalName>lc</finalName>
         <plugins>
 
             <!-- Jetty插件 -->

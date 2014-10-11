@@ -13,6 +13,5 @@
         <module>core</module>
         <module>server</module>
         <module>support</module>
-        <module>codegen</module>
     </modules>
 </project>
