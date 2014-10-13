@@ -17,6 +17,12 @@
         </param-value>
     </context-param>
 
+    <!-- 配置Spring Context的默认Profile : development:开发环境  production:生产环节 -->
+    <context-param>
+        <param-name>spring.profiles.default</param-name>
+        <param-value>production</param-value>
+    </context-param>
+
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
