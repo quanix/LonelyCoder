@@ -45,7 +45,7 @@
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="dataSourceProxy"/>
         <property name="jpaVendorAdapter" ref="hibernateJpaVendorAdapter"/>
-        <property name="packagesToScan" value="org.lonelycoder"/>
+        <property name="packagesToScan" value="org.lonelycoder.**.entity"/>
         <property name="jpaProperties">
             <props>
                 <!-- 命名规则 My_NAME->MyName -->
@@ -66,7 +66,8 @@
     <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
 
     <!-- Spring Data Jpa配置 -->
-    <jpa:repositories base-package="org.lonelycoder"
+    <jpa:repositories base-package="org.lonelycoder.**.repository"
+                      repository-impl-postfix="Impl"
                       transaction-manager-ref="transactionManager"
                       entity-manager-factory-ref="entityManagerFactory"/>
 

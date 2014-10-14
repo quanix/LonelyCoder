@@ -11,6 +11,7 @@
 
     <modelVersion>4.0.0</modelVersion>
     <artifactId>server</artifactId>
+    <packaging>war</packaging>
 
     <properties>
         <mysql.version>5.1.25</mysql.version>
@@ -48,8 +49,49 @@
 
     <!-- 构建服务插件 -->
     <build>
-        <finalName>lc</finalName>
+        <finalName>lonelycoder_web</finalName>
         <plugins>
+
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.0.2</version>
+                <configuration>
+                    <encoding>utf-8</encoding>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                    <meminitial>128m</meminitial>
+                    <maxmem>512m</maxmem>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-eclipse-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <additionalProjectnatures>
+                        <projectnature>
+                            org.springframework.ide.eclipse.core.springnature
+                        </projectnature>
+                    </additionalProjectnatures>
+                    <additionalBuildcommands>
+                        <buildcommand>
+                            org.springframework.ide.eclipse.core.springbuilder
+                        </buildcommand>
+                    </additionalBuildcommands>
+                    <downloadSources>true</downloadSources>
+                    <downloadJavadocs>true</downloadJavadocs>
+                    <wtpversion>1.5</wtpversion>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.4.3</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+
             <!-- Jetty插件 -->
             <plugin>
                 <groupId>org.mortbay.jetty</groupId>
@@ -58,6 +100,18 @@
                 <configuration>
 
                     <systemProperties>
+                        <systemProperty>
+                            <name>MAVEN_OPTS</name>
+                            <value>"-Xms512m -Xmx1024m -XX:MaxPermSize=384m"</value>
+                        </systemProperty>
+                        <systemProperty>
+                            <name>JVM-ARG</name>
+                            <value>"-XX:MaxPermSize=386m"</value>
+                        </systemProperty>
+                        <systemProperty>
+                            <name>JAVA_OPTS</name>
+                            <value>"-Xms512m -Xmx1024m"</value>
+                        </systemProperty>
                         <systemProperty>
                             <name>spring.profiles.active</name>
                             <value>development</value>
