@@ -15,7 +15,7 @@ public class IndexController {
     @RequestMapping(method=RequestMethod.GET)
     public String index() {
 
-        System.out.println("»¶Ó­µÇÂ¼¼ÅÄ¯ÂëÅ©ÉçÇø!");
+        System.out.println("æ¬¢è¿ç™»å½•å¯‚å¯ç å†œç¤¾åŒº!");
 
         return "index";
     }

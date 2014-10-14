@@ -6,12 +6,12 @@ package org.lonelycoder.server.system.user.entity;
  */
 public enum UserStatus {
 
-    normal("����״̬"), blocked("��ֹ״̬");
+    normal("正常状态"), blocked("禁止状态");
 
     private final String info;
 
     UserStatus(String info) {
-         this.info = info;
+        this.info = info;
     }
 
     public String getInfo() {
