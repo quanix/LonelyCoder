@@ -14,7 +14,7 @@ import java.sql.SQLException;
 public class JpaDialect {
 
     /**
-     * 获取数据库方言
+     * 鑾峰彇鏁版嵁搴撴柟瑷�
      * @param dataSource
      * @return
      */
@@ -37,7 +37,7 @@ public class JpaDialect {
 
 
     /**
-     * 获取JDBC URL
+     * 鑾峰彇JDBC URL
      * @param dataSource
      * @return
      */

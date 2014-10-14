@@ -14,7 +14,7 @@ import java.util.Date;
 
 /**
  * Author : lihaoquan
- * Description : ÓÃ»§ĞÅÏ¢ÊµÌå
+ * Description : ç”¨æˆ·ä¿¡æ¯å®ä½“
  */
 @Entity
 @Table(name = "sys_user")
@@ -46,13 +46,13 @@ public class User extends BaseEntity<Long> implements LogicDeleteable {
 
 
     /**
-     * Ê¹ÓÃmd5(username + original password + salt)¼ÓÃÜ´æ´¢
+     * ä½¿ç”¨md5(username + original password + salt)åŠ å¯†å­˜å‚¨
      */
     @Length(min = PASSWORD_MIN_LENGTH, max = PASSWORD_MAX_LENGTH, message = "{user.password.not.valid}")
     private String password;
 
     /**
-     * ¼ÓÃÜÑÎ
+     * åŠ å¯†ç›
      */
     private String salt;
 
@@ -63,20 +63,20 @@ public class User extends BaseEntity<Long> implements LogicDeleteable {
     private Date createDate;
 
     /**
-     * ÏµÍ³ÓÃ»§×´Ì¬
+     * ç³»ç»Ÿç”¨æˆ·çŠ¶æ€
      */
     @Enumerated(EnumType.STRING)
     private UserStatus status = UserStatus.normal;
 
 
     /**
-     * ÊÇ·ñÊÇ¹ÜÀíÔ±
+     * æ˜¯å¦æ˜¯ç®¡ç†å‘˜
      */
     private Boolean admin;
 
 
     /**
-     * Âß¼­É¾³ıflag
+     * é€»è¾‘åˆ é™¤flag
      */
     private Boolean deleted = Boolean.FALSE;
 
@@ -130,7 +130,7 @@ public class User extends BaseEntity<Long> implements LogicDeleteable {
     }
 
     /**
-     * Éú³ÉĞÂµÄÖÖ×Ó
+     * ç”Ÿæˆæ–°çš„ç§å­
      */
     public void randomSalt() {
         setSalt(RandomStringUtils.randomAlphanumeric(10));

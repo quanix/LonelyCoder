@@ -2,8 +2,8 @@ package org.lonelycoder.core.plugin.entity;
 
 /**
  * Author : lihaoquan
- * Description : ÊµÌåÊµÏÖ¸Ã½Ó¿Ú±íÊ¾ÏëÒªÂß¼­É¾³ı
- * Ô¼¶¨É¾³ı±êÊ¶ÁĞÃûÎªdeleted
+ * Description : å®ä½“å®ç°è¯¥æ¥å£è¡¨ç¤ºæƒ³è¦é€»è¾‘åˆ é™¤
+ * çº¦å®šåˆ é™¤æ ‡è¯†åˆ—åä¸ºdeleted
  */
 public interface LogicDeleteable {
 
@@ -12,7 +12,7 @@ public interface LogicDeleteable {
     public void setDeleted(Boolean deleted);
 
     /**
-     * ±ê¼ÇÎªÒÑ¾­É¾³ı
+     * æ ‡è®°ä¸ºå·²ç»åˆ é™¤
      */
     public void markDeleted();
 }

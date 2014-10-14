@@ -7,11 +7,11 @@ import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 
 /**
  * Author : lihaoquan
- * Description : Spring ÉÏÏÂÎÄ¹¤¾ß
+ * Description : Spring ä¸Šä¸‹æ–‡å·¥å…·
  */
 public class SpringUtils implements BeanFactoryPostProcessor {
 
-    private static ConfigurableListableBeanFactory beanFactory;//SpringÓ¦ÓÃÉÏÏÂÎÄ
+    private static ConfigurableListableBeanFactory beanFactory;//Springåº”ç”¨ä¸Šä¸‹æ–‡
 
     @Override
     public void postProcessBeanFactory(ConfigurableListableBeanFactory configurableListableBeanFactory)
@@ -20,10 +20,10 @@ public class SpringUtils implements BeanFactoryPostProcessor {
     }
 
     /**
-     * »ñÈ¡¶ÔÏó
+     * è·å–å¯¹è±¡
      *
      * @param name
-     * @return Object Ò»¸öÒÔËù¸øÃû×Ö×¢²áµÄbeanµÄÊµÀı
+     * @return Object ä¸€ä¸ªä»¥æ‰€ç»™åå­—æ³¨å†Œçš„beançš„å®ä¾‹
      * @throws org.springframework.beans.BeansException
      *
      */
@@ -33,7 +33,7 @@ public class SpringUtils implements BeanFactoryPostProcessor {
     }
 
     /**
-     * »ñÈ¡ÀàĞÍÎªrequiredTypeµÄ¶ÔÏó
+     * è·å–ç±»å‹ä¸ºrequiredTypeçš„å¯¹è±¡
      *
      * @param clz
      * @return
@@ -47,7 +47,7 @@ public class SpringUtils implements BeanFactoryPostProcessor {
     }
 
     /**
-     * Èç¹ûBeanFactory°üº¬Ò»¸öÓëËù¸øÃû³ÆÆ¥ÅäµÄbean¶¨Òå£¬Ôò·µ»Øtrue
+     * å¦‚æœBeanFactoryåŒ…å«ä¸€ä¸ªä¸æ‰€ç»™åç§°åŒ¹é…çš„beanå®šä¹‰ï¼Œåˆ™è¿”å›true
      *
      * @param name
      * @return boolean
@@ -57,7 +57,7 @@ public class SpringUtils implements BeanFactoryPostProcessor {
     }
 
     /**
-     * ÅĞ¶ÏÒÔ¸ø¶¨Ãû×Ö×¢²áµÄbean¶¨ÒåÊÇÒ»¸ösingleton»¹ÊÇÒ»¸öprototype¡£ Èç¹ûÓë¸ø¶¨Ãû×ÖÏàÓ¦µÄbean¶¨ÒåÃ»ÓĞ±»ÕÒµ½£¬½«»áÅ×³öÒ»¸öÒì³££¨NoSuchBeanDefinitionException£©
+     * åˆ¤æ–­ä»¥ç»™å®šåå­—æ³¨å†Œçš„beanå®šä¹‰æ˜¯ä¸€ä¸ªsingletonè¿˜æ˜¯ä¸€ä¸ªprototypeã€‚ å¦‚æœä¸ç»™å®šåå­—ç›¸åº”çš„beanå®šä¹‰æ²¡æœ‰è¢«æ‰¾åˆ°ï¼Œå°†ä¼šæŠ›å‡ºä¸€ä¸ªå¼‚å¸¸ï¼ˆNoSuchBeanDefinitionExceptionï¼‰
      *
      * @param name
      * @return boolean
@@ -70,7 +70,7 @@ public class SpringUtils implements BeanFactoryPostProcessor {
 
     /**
      * @param name
-     * @return Class ×¢²á¶ÔÏóµÄÀàĞÍ
+     * @return Class æ³¨å†Œå¯¹è±¡çš„ç±»å‹
      * @throws org.springframework.beans.factory.NoSuchBeanDefinitionException
      *
      */
@@ -79,7 +79,7 @@ public class SpringUtils implements BeanFactoryPostProcessor {
     }
 
     /**
-     * Èç¹û¸ø¶¨µÄbeanÃû×ÖÔÚbean¶¨ÒåÖĞÓĞ±ğÃû£¬Ôò·µ»ØÕâĞ©±ğÃû
+     * å¦‚æœç»™å®šçš„beanåå­—åœ¨beanå®šä¹‰ä¸­æœ‰åˆ«åï¼Œåˆ™è¿”å›è¿™äº›åˆ«å
      *
      * @param name
      * @return
