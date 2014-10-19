@@ -26,6 +26,8 @@
         <slf4j.version>1.7.5</slf4j.version>
         <logback.version>1.0.13</logback.version>
 
+        <druid.version>0.2.23</druid.version>
+
         <hibernate.version>4.2.5.Final</hibernate.version>
         <hibernate-validator.version>4.3.1.Final</hibernate-validator.version>
 
@@ -38,6 +40,13 @@
     </properties>
 
     <dependencies>
+
+        <!-- data source 相关jar包-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>${druid.version}</version>
+        </dependency>
 
         <!-- 日志 -->
         <dependency>
