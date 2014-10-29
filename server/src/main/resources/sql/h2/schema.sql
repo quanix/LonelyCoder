@@ -2,7 +2,6 @@ drop table if exists sys_user;
 
 
 
--- --------------------- 01 ÏµÍ³±í -------------------------------
 create table sys_user(
   id        bigint not null auto_increment,
   username  varchar(100) not null,

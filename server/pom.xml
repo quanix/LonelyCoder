@@ -18,9 +18,17 @@
         <h2.version>1.4.181</h2.version>
         <jetty-maven-plugin.version>8.1.8.v20121106</jetty-maven-plugin.version>
         <tomcat7-maven-plugin.version>2.2</tomcat7-maven-plugin.version>
+        <tomcat-jdbc.version>7.0.53</tomcat-jdbc.version>
     </properties>
 
     <dependencies>
+
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-jdbc</artifactId>
+            <version>${tomcat-jdbc.version}</version>
+            <scope>runtime</scope>
+        </dependency>
 
         <!-- MySQL 数据库 -->
         <dependency>

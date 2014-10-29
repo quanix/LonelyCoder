@@ -9,7 +9,7 @@ import java.io.Serializable;
 /**
  * Author : lihaoquan
  * Description :
- * 子类只需要在类头上加 @SequenceGenerator(name="seq", sequenceName="你的sequence名字")
+ * 瀛愮被鍙渶瑕佸湪绫诲ご涓婂姞 @SequenceGenerator(name="seq", sequenceName="浣犵殑sequence鍚嶅瓧")
  */
 
 @MappedSuperclass

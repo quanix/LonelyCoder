@@ -68,6 +68,7 @@
     <!-- Spring Data Jpa配置 -->
     <jpa:repositories base-package="org.lonelycoder.**.repository"
                       repository-impl-postfix="Impl"
+                      factory-class="org.lonelycoder.core.repository.MyBaseRepositoryFactoryBean"
                       transaction-manager-ref="transactionManager"
                       entity-manager-factory-ref="entityManagerFactory"/>
 
@@ -79,6 +80,14 @@
 
     <!-- 使用annotation定义事务 -->
     <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true" />
+
+
+    <!--设置BaseRepositoryImplHelper辅助类所需的entityManagerFactory-->
+    <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="staticMethod"
+                  value="org.lonelycoder.core.repository.support.RepositoryHelper.setEntityManagerFactory"/>
+        <property name="arguments" ref="entityManagerFactory"/>
+    </bean>
 
     <!-- 开发环境  -->
     <beans profile="development">
@@ -102,11 +111,18 @@
     <beans profile="production">
         <context:property-placeholder ignore-resource-not-found="true"
                                       location="classpath*:/configs/applicationContext.properties" />
-        <bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
-            <property name="driverClass" value="${jdbc.driver}" />
+
+        <bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource" destroy-method="close">
+            <property name="driverClassName" value="${jdbc.driver}" />
             <property name="url" value="${jdbc.url}" />
             <property name="username" value="${jdbc.username}" />
             <property name="password" value="${jdbc.password}" />
+
+            <!-- Connection Pooling Info -->
+            <property name="maxActive" value="${jdbc.pool.maxActive}" />
+            <property name="maxIdle" value="${jdbc.pool.maxIdle}" />
+            <property name="minIdle" value="0" />
+            <property name="defaultAutoCommit" value="false" />
         </bean>
     </beans>
 

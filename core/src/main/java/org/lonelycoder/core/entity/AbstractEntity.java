@@ -7,23 +7,23 @@ import java.io.Serializable;
 
 /**
  * Author : lihaoquan
- * Description : ³éÏóÊµÌå»ùÀà
+ * Description : æŠ½è±¡å®ä½“åŸºç±»
  *
- * ¶ÔÓÚIDµÄÉú´æ²ßÂÔÔÚ¼Ì³ĞÀàÖĞÊµÏÖ
+ * å¯¹äºIDçš„ç”Ÿå­˜ç­–ç•¥åœ¨ç»§æ‰¿ç±»ä¸­å®ç°
  */
 public abstract class AbstractEntity<ID extends Serializable> implements Persistable<ID> {
 
     public abstract ID getId();
 
     /**
-     * ÉèÖÃÊµÌåµÄÖ÷¼ü
+     * è®¾ç½®å®ä½“çš„ä¸»é”®
      *
      * @param id the id to set
      */
     public abstract void setId(final ID id);
 
     /*
-     * ¼Ì³Ğ Persistable µÄ isNew() ·½·¨
+     * ç»§æ‰¿ Persistable çš„ isNew() æ–¹æ³•
      *
      */
     public boolean isNew() {

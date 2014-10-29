@@ -8,14 +8,14 @@ import java.io.Serializable;
 
 /**
  * Author : lihaoquan
- * Description : 实体基类
+ * Description : 瀹炰綋鍩虹被
  */
 
 @MappedSuperclass
 public abstract class BaseEntity<ID extends Serializable> extends AbstractEntity<ID> {
 
     /**
-     * 指定主键生成策略
+     * 鎸囧畾涓婚敭鐢熸垚绛栫暐
      */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
