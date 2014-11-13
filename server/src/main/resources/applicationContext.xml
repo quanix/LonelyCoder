@@ -93,11 +93,23 @@
     <beans profile="development">
         <context:property-placeholder ignore-resource-not-found="true"
                                       location="classpath*:/configs/applicationContext.properties" />
-        <bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+        <!--<bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
             <property name="driverClass" value="${development.jdbc.driver}" />
             <property name="url" value="${development.jdbc.url}" />
             <property name="username" value="${development.jdbc.username}" />
             <property name="password" value="${development.jdbc.password}" />
+        </bean>-->
+
+        <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+            <!-- 基本属性 url、user、password -->
+            <property name="driverClassName" value="org.h2.Driver"></property>
+            <property name="url" value="${development.jdbc.url}"/>
+            <property name="username" value="${development.jdbc.username}"/>
+            <property name="password" value="${development.jdbc.password}"/>
+
+            <!-- 配置监控统计拦截的filters -->
+            <property name="filters" value="wall,stat" />
+
         </bean>
 
         <!-- 初始化数据表结构 与默认数据-->
