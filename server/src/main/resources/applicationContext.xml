@@ -93,22 +93,43 @@
     <beans profile="development">
         <context:property-placeholder ignore-resource-not-found="true"
                                       location="classpath*:/configs/applicationContext.properties" />
-        <!--<bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
-            <property name="driverClass" value="${development.jdbc.driver}" />
-            <property name="url" value="${development.jdbc.url}" />
-            <property name="username" value="${development.jdbc.username}" />
-            <property name="password" value="${development.jdbc.password}" />
-        </bean>-->
 
         <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
             <!-- 基本属性 url、user、password -->
-            <property name="driverClassName" value="org.h2.Driver"></property>
             <property name="url" value="${development.jdbc.url}"/>
             <property name="username" value="${development.jdbc.username}"/>
             <property name="password" value="${development.jdbc.password}"/>
 
+            <!-- 配置初始化大小、最小、最大 -->
+            <property name="initialSize" value="${development.jdbc.initialSize}"/>
+            <property name="minIdle" value="${development.jdbc.minIdle}"/>
+            <property name="maxActive" value="${development.jdbc.maxActive}"/>
+
+            <!-- 配置获取连接等待超时的时间 -->
+            <property name="maxWait" value="${development.jdbc.maxWait}"/>
+            <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+            <property name="timeBetweenEvictionRunsMillis" value="${development.jdbc.timeBetweenEvictionRunsMillis}" />
+
+            <!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+            <property name="minEvictableIdleTimeMillis" value="${development.jdbc.minEvictableIdleTimeMillis}" />
+
+            <!-- 查询超时时候 -->
+            <property name="queryTimeout" value="${development.jdbc.querytimeout}"/>
+
+            <property name="validationQuery" value="${development.jdbc.validationQuery}" />
+            <property name="connectionInitSqls" value="${development.jdbc.connectionInitSqls}"/>
+            <property name="testWhileIdle" value="${development.jdbc.testWhileIdle}" />
+            <property name="testOnBorrow" value="${development.jdbc.testOnBorrow}" />
+            <property name="testOnReturn" value="${development.jdbc.testOnReturn}" />
+
+            <!-- 打开PSCache，并且指定每个连接上PSCache的大小
+            如果用Oracle，则把poolPreparedStatements配置为true，gbase可以配置为false。-->
+            <property name="poolPreparedStatements" value="${development.jdbc.poolPreparedStatements}" />
+            <property name="maxPoolPreparedStatementPerConnectionSize" value="${development.jdbc.maxPoolPreparedStatementPerConnectionSize}" />
+
+
             <!-- 配置监控统计拦截的filters -->
-            <property name="filters" value="wall,stat" />
+            <property name="filters" value="${development.jdbc.filters}" />
 
         </bean>
 
