@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * Author : lihaoquan
  * Description :
@@ -40,6 +42,10 @@ public class UserService extends BaseService<User,Long> {
         return getUserDao().findByUsername(username);
     }
 
+
+    public List<User> findAll() {
+        return getUserDao().findAll();
+    }
 
     /**
      * 继承父类的保存方法,对密码进行处理

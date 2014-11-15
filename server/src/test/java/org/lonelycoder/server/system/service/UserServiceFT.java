@@ -6,6 +6,8 @@ import org.lonelycoder.server.system.user.service.UserService;
 import org.lonelycoder.server.test.BaseFT;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 /**
  * @author : lihaoquan
  */
@@ -31,6 +33,10 @@ public class UserServiceFT extends BaseFT {
         User currentUser = userService.findByUsername("jjj");
 
         System.out.println(">>>"+currentUser.getEmail());
+
+        List<User> userList = userService.findAll();
+
+        System.out.println("==="+userList.size());
 
 
     }
