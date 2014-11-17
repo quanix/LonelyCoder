@@ -12,7 +12,7 @@ import java.util.NoSuchElementException;
 
 /**
  * Author : lihaoquan
- * Description : 断言工具类, 用于检查
+ * Description : 断言工具类, 用于检查!
  */
 @SuppressWarnings("rawtypes")
 public class Assert {
