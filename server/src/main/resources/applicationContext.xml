@@ -89,6 +89,17 @@
         <property name="arguments" ref="entityManagerFactory"/>
     </bean>
 
+
+    <!--设置查询字符串转换器的conversion service-->
+    <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="staticMethod"
+                  value="org.lonelycoder.core.entity.search.utils.SearchableConvertUtils.setConversionService"/>
+        <property name="arguments" ref="conversionService"/>
+    </bean>
+
+    <!-- 类型转换及数据格式化 -->
+    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean"/>
+
     <!-- 开发环境  -->
     <beans profile="development">
         <context:property-placeholder ignore-resource-not-found="true"

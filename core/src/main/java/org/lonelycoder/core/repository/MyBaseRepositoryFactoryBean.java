@@ -21,6 +21,13 @@ public class MyBaseRepositoryFactoryBean<R extends JpaRepository<M, ID> , M, ID 
 
     }
 
+    /**
+     * 重新 JpaRepositoryFactoryBean 的 createRepositoryFactory()
+     * @param entityManager
+     * @return
+     *
+     * 这样做的目的是无侵入地对BaseRepository进行扩展,增加相关搜索的处理
+     */
     @Override
     protected RepositoryFactorySupport createRepositoryFactory(EntityManager entityManager) {
         return new MyBaseRepositoryFactory(entityManager);

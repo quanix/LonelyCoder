@@ -1,10 +1,13 @@
 package org.lonelycoder.core.repository;
 
 
+import org.lonelycoder.core.entity.search.Searchable;
+import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.NoRepositoryBean;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * created by lihaoquan
@@ -26,8 +29,34 @@ public interface BaseRepository<M,ID extends Serializable> extends JpaRepository
 
 
     /**
+     * 查找所有
+     * @return
+     */
+    List<M> findAll();
+
+
+
+    /**
      * 打印模型信息
      * @param m
      */
     public void printModel(M m);
+
+    /**
+     * 根据条件查询所有
+     * 条件 + 分页 + 排序
+     *
+     * @param searchable
+     * @return
+     */
+    public Page<M> findAll(Searchable searchable);
+
+    /**
+     * 根据条件统计所有记录数
+     *
+     * @param searchable
+     * @return
+     */
+    public long count(Searchable searchable);
+
 }

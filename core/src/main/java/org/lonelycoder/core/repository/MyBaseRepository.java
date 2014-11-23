@@ -3,10 +3,17 @@ package org.lonelycoder.core.repository;
 import com.google.common.collect.Sets;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang3.ArrayUtils;
+import org.lonelycoder.core.entity.search.Searchable;
 import org.lonelycoder.core.plugin.entity.LogicDeleteable;
+import org.lonelycoder.core.repository.callback.SearchCallback;
 import org.lonelycoder.core.repository.support.RepositoryHelper;
+import org.lonelycoder.core.repository.support.annotation.QueryJoin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.support.JpaEntityInformation;
 import org.springframework.data.jpa.repository.support.LockMetadataProvider;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
@@ -64,6 +71,9 @@ public class MyBaseRepository<M , ID extends Serializable> extends SimpleJpaRepo
      */
     private String countAllQL;
 
+    private QueryJoin[] joins;
+
+    private SearchCallback searchCallback = SearchCallback.DEFAULT;
 
 
 
@@ -87,14 +97,86 @@ public class MyBaseRepository<M , ID extends Serializable> extends SimpleJpaRepo
         super(domainClass, em);
     }
 
-    @Override
-    public List<M> findAll() {
-        System.out.println("获取所有的:"+this.entityName);
-        logger.info("通过JPA获取所有的["+entityName+"]集合");
-        return super.findAll();
+
+    /**
+     * Configures a custom {@link org.springframework.data.jpa.repository.support.LockMetadataProvider} to be used to detect {@link javax.persistence.LockModeType}s to be applied to
+     * queries.
+     *
+     * @param lockMetadataProvider
+     */
+    public void setLockMetadataProvider(LockMetadataProvider lockMetadataProvider) {
+        super.setLockMetadataProvider(lockMetadataProvider);
+        this.lockMetadataProvider = lockMetadataProvider;
+    }
+
+    /**
+     * 设置searchCallback
+     *
+     * @param searchCallback
+     */
+    public void setSearchCallback(SearchCallback searchCallback) {
+        this.searchCallback = searchCallback;
+    }
+
+    /**
+     * 设置查询所有的ql
+     *
+     * @param findAllQL
+     */
+    public void setFindAllQL(String findAllQL) {
+        this.findAllQL = findAllQL;
+    }
+
+    /**
+     * 设置统计的ql
+     *
+     * @param countAllQL
+     */
+    public void setCountAllQL(String countAllQL) {
+        this.countAllQL = countAllQL;
+    }
+
+    public void setJoins(QueryJoin[] joins) {
+        this.joins = joins;
     }
 
 
+
+    @Override
+    public List<M> findAll() {
+        return repositoryHelper.findAll(findAllQL);
+    }
+
+
+    @Override
+    public Page<M> findAll(final Pageable pageable) {
+        //return super.findAll(pageable);
+        return new PageImpl<M>(repositoryHelper.<M>findAll(findAllQL,pageable),
+                pageable,repositoryHelper.count(countAllQL));
+    }
+
+    @Override
+    public List<M> findAll(Sort sort) {
+        //return super.findAll(sort);
+        return repositoryHelper.findAll(findAllQL,sort);
+    }
+
+    @Override
+    public Page<M> findAll(final Searchable searchable) {
+        List<M> list = repositoryHelper.findAll(findAllQL, searchable, searchCallback);
+        long total = searchable.hasPageable() ? count(searchable) : list.size();
+        return new PageImpl<M>(
+                list,
+                searchable.getPage(),
+                total
+        );
+    }
+
+
+    @Override
+    public long count(final Searchable searchable) {
+        return repositoryHelper.count(countAllQL, searchable, searchCallback);
+    }
 
     /**
      * 删除实体
@@ -146,7 +228,6 @@ public class MyBaseRepository<M , ID extends Serializable> extends SimpleJpaRepo
 
     @Override
     public void deleteInBatch(final Iterable<M> entities) {
-        //super.deleteInBatch(entities);
         Iterator<M> iter = entities.iterator();
         if(entities == null || !iter.hasNext()) {
             return;
@@ -164,6 +245,16 @@ public class MyBaseRepository<M , ID extends Serializable> extends SimpleJpaRepo
             String ql = String.format(DELETE_ALL_QUERY_STRING, entityName);
             repositoryHelper.batchUpdate(ql, models);
         }
+    }
+
+
+    /**
+     * 针对目前的数据库特性,使用自定义的统计语句
+     * @return
+     */
+    @Override
+    public long count() {
+        return repositoryHelper.count(countAllQL);
     }
 
     @Override

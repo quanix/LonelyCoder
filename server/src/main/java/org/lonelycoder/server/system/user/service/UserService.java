@@ -1,11 +1,13 @@
 package org.lonelycoder.server.system.user.service;
 
+import org.lonelycoder.core.entity.search.Searchable;
 import org.lonelycoder.core.service.BaseService;
 import org.lonelycoder.server.system.user.entity.User;
 import org.lonelycoder.server.system.user.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -45,6 +47,11 @@ public class UserService extends BaseService<User,Long> {
 
     public List<User> findAll() {
         return getUserDao().findAll();
+    }
+
+
+    public Page<User> findAll(Searchable searchable) {
+        return getUserDao().findAll(searchable);
     }
 
     /**
